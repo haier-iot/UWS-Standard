@@ -137,7 +137,7 @@
 
 #### 步骤一：进行maven配置  
 
-具体信息见 [maven配置信息](#index42)   
+具体信息见 [maven配置信息](index42)   
 
 #### 步骤二：配置文件装载方法  
 
@@ -147,8 +147,8 @@
 
 ##### 方法二  
 
-1、在web.xml中配置文件装载，见 [Web应用容器配置](#index44)   
-2、在resources文件夹下添加base-log-plugin.xml文件，配置信息如 [实例配置信息](#index43)   
+1、在web.xml中配置文件装载，见 [Web应用容器配置](index44)   
+2、在resources文件夹下添加base-log-plugin.xml文件，配置信息如 [实例配置信息](index43)   
 
 #### 步骤三：方法的使用  
 
