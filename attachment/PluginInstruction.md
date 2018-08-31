@@ -54,7 +54,7 @@
 4、日志监控的其他详细字段请见“日志Schema”。  
 
 
-### maven配置信息 {#index42}
+### <a href="index42">maven配置信息</a>
 
 ?> Maven项目首先配置pom.xml，添加基础日志插件依赖，目前版本1.0.9：  
    
@@ -67,7 +67,7 @@
 
 ```    
 
-### 实例配置信息 {#index43} 
+### <a href="index43">实例配置信息</a>   
 
 ?> 配置base-log-plugin.xml，通过spring bean方式定义和配置插件，并配置依赖关系：  
 **注：第14-18行、第22-26行、第31行为注释，第19-20行及第33行中的`m2m`字段值、第27-28行及第35行中的`haier`字段值、第24行中的`v1.0.2`为各位根据需求需要修改的值，其他信息均不用变动。**  
@@ -110,7 +110,7 @@
 	36		</bean>
 	37	</beans>  
 
-### Web应用容器配置 {#index44}  
+### <a href="index44">Web应用容器配置</a>
 ?> 配置web应用的web.xml：  
 
 ```java  
@@ -137,7 +137,7 @@
 
 #### 步骤一：进行maven配置  
 
-具体信息见 [maven配置信息](#index42)
+具体信息见 <a name="index42">maven配置信息</a>  
 
 #### 步骤二：配置文件装载方法  
 
@@ -147,8 +147,8 @@
 
 ##### 方法二  
 
-1、在web.xml中配置文件装载，见[Web应用容器配置](#index44)  
-2、在resources文件夹下添加base-log-plugin.xml文件，配置信息如[实例配置信息](#index43)
+1、在web.xml中配置文件装载，见<a name="index44">Web应用容器配置</a> 
+2、在resources文件夹下添加base-log-plugin.xml文件，配置信息如<a name="index43">实例配置信息</a>
 
 #### 步骤三：方法的使用  
 
