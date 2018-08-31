@@ -15,7 +15,7 @@
 
 ## 插件使用前提  
 
-?> 开发的服务系统在使用日志插件前，请先与负责日志插件使用的<font color=FF0000>**龚学纲（gongxuegang.uh@haier.com）**</font>进行联系沟通获取日志版本以及日志插件的版本等内容：  
+?> 开发的服务系统在使用日志插件前，请先与负责日志插件使用的 <font color=FF0000><b>龚学纲（gongxuegang.uh@haier.com）</b></font> 进行联系沟通获取日志版本以及日志插件的版本等内容：  
 
 - **日志schema版本**  
 >  具体使用的日志schema版本与格式定义；  
@@ -54,7 +54,7 @@
 4、日志监控的其他详细字段请见“日志Schema”。  
 
 
-### maven配置信息{index4.2}
+### maven配置信息{#index42}
 
 ?> Maven项目首先配置pom.xml，添加基础日志插件依赖，目前版本1.0.9：  
    
@@ -67,50 +67,50 @@
 
 ```    
 
-### 实例配置信息{index4.3} 
+### 实例配置信息{#index43} 
 
 ?> 配置base-log-plugin.xml，通过spring bean方式定义和配置插件，并配置依赖关系：  
-注：红色标注为注释，黄色标注为各位根据需求需要修改的值，其他信息均不用变动。  
+**注：第14-18行、第22-26行、第31行为注释，第19-20行及第33行中的`m2m`字段值、第27-28行及第35行中的`haier`字段值、第24行中的`v1.0.2`为各位根据需求需要修改的值，其他信息均不用变动。**  
 
-	<?xml version="1.0" encoding="UTF-8"?>
-	<beans xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-		xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans classpath:/org/springframework/beans/factory/xml/spring-beans-4.0.xsd
-					http://www.springframework.org/schema/context classpath:/org/springframework/context/config/spring-context-4.0.xsd
-					http://www.springframework.org/schema/aop classpath:/org/springframework/aop/config/spring-aop-4.0.xsd
-					http://www.springframework.org/schema/tx classpath:/org/springframework/transaction/config/spring-tx-4.0.xsd">
-																								
-		<!-- 自动扫描 ,将带有注解的类 纳入spring容器管理 -->
-		<context:component-scan base-package="com.hshbic.cloud.log" />
-		
-		<!-- 枚举类型转换 -->
-		<!-- 字段Sys（系统）为枚举类型
-			枚举类:com.hshbic.cloud.audit.Sys
-			枚举值：m2m, AGS, UWS, CD, MP, OSS, IFTTT
-			各位根据需求自行配置
-		-->
-		<bean id="m2m" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">    
-		<property name="staticField" value="com.hshbic.cloud.log.Sys.m2m" />    
-		</bean>
-		<!-- 字段Frm(日志源)为枚举类型
-			枚举类：com.hshbic.cloud.audit.Frm
-			枚举值：haier, ali, jd, tx
-			各位根据需求自行配置	
-		 -->
-		<bean id="haier" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">    
-		<property name="staticField" value="com.hshbic.cloud.log.Frm.haier" />    
-		</bean>
-	
-		<!-- 其中Sys和Frm的ref引用上面的转换bean，ver根据自身需求进行配置 -->
-		<bean id="LogPlugin" class="com.hshbic.cloud.log.LogPlugin"> 
-			<property name="Sys" ref="m2m"></property> 
-			<property name="ver" value="v1.0.2"></property> 
-			<property name="Frm" ref="haier"></property> 
-		</bean>
-	</beans>  
+	1	<?xml version="1.0" encoding="UTF-8"?>
+	2	<beans xmlns="http://www.springframework.org/schema/beans"
+	3		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	4		xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	5		xsi:schemaLocation="http://www.springframework.org/schema/beans classpath:/org/springframework/beans/factory/xml/spring-beans-4.0.xsd
+	6				http://www.springframework.org/schema/context classpath:/org/springframework/context/config/spring-context-4.0.xsd
+	7				http://www.springframework.org/schema/aop classpath:/org/springframework/aop/config/spring-aop-4.0.xsd
+	8				http://www.springframework.org/schema/tx classpath:/org/springframework/transaction/config/spring-tx-4.0.xsd">
+	9																							
+	10		<!-- 自动扫描 ,将带有注解的类 纳入spring容器管理 -->
+	11		<context:component-scan base-package="com.hshbic.cloud.log" />
+	12	
+	13		<!-- 枚举类型转换 -->
+	14		<!-- 字段Sys（系统）为枚举类型
+	15			枚举类:com.hshbic.cloud.audit.Sys
+	16			枚举值：m2m, AGS, UWS, CD, MP, OSS, IFTTT
+	17			各位根据需求自行配置
+	18		-->
+	19		<bean id="m2m" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">    
+	20			<property name="staticField" value="com.hshbic.cloud.log.Sys.m2m" />    
+	21		</bean>
+	22		<!-- 字段Frm(日志源)为枚举类型
+	23			枚举类：com.hshbic.cloud.audit.Frm
+	24			枚举值：haier, ali, jd, tx
+	25			各位根据需求自行配置	
+	26	 	-->
+	27		<bean id="haier" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">    
+	28			<property name="staticField" value="com.hshbic.cloud.log.Frm.haier" />    
+	29		</bean>
+	30		
+	31		<!-- 其中Sys和Frm的ref引用上面的转换bean，ver根据自身需求进行配置 -->
+	32		<bean id="LogPlugin" class="com.hshbic.cloud.log.LogPlugin"> 
+	33			<property name="Sys" ref="m2m"></property> 
+	34			<property name="ver" value="v1.0.2"></property> 
+	35			<property name="Frm" ref="haier"></property> 
+	36		</bean>
+	37	</beans>  
 
-### Web应用容器配置{index4.4}  
+### Web应用容器配置{#index44}  
 ?> 配置web应用的web.xml：  
 
 ```java  
@@ -137,7 +137,7 @@
 
 #### 步骤一：进行maven配置  
 
-具体信息见 [maven配置信息](index4.2)
+具体信息见 [maven配置信息](#index42)
 
 #### 步骤二：配置文件装载方法  
 
@@ -147,8 +147,8 @@
 
 ##### 方法二  
 
-1、在web.xml中配置文件装载，见[Web应用容器配置](index4.4)  
-2、在resources文件夹下添加base-log-plugin.xml文件，配置信息如[实例配置信息](index4.3)
+1、在web.xml中配置文件装载，见[Web应用容器配置](#index44)  
+2、在resources文件夹下添加base-log-plugin.xml文件，配置信息如[实例配置信息](#index43)
 
 #### 步骤三：方法的使用  
 
