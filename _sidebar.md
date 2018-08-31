@@ -1,4 +1,4 @@
-* [UWS服务开发规范](DevelopmentSpecification)
+* [UWS服务开发规范](README)
 * 附件
 * * [IOT错误码汇总](attachment/ErrorCode)
 * * [基础日志插件使用说明](attachment/PluginInstruction)
