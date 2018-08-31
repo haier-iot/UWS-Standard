@@ -11,10 +11,24 @@
 <body>
   <div id="app"></div>
   <script>
-    window.$docsify = {
+   window.$docsify = {
       name: '',
-      repo: ''
-    }
+      repo: '',
+	  loadSidebar: true,
+	  autoHeader: true,   //根据sidebar自动添加标题
+	  subMaxLevel: 4,   //显示目录级别
+	 // alias: {
+    //  '/.*/_sidebar.md': '/_sidebar.md'
+    //},
+    auto2top: true ,    //切换页面后是否自动跳转到页面顶部。
+	 externalLinkTarget: '_self' ,// default: '_blank',_self    //外联打开方式
+	 notFoundPage: {    //404页面
+    '/': '_404.md',
+    '/zh-cn': 'zh-cn/_404.md'
+    },
+	
+	    search: 'auto', // 默认值
+    // 以下为serch完整配置参数
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 </body>
