@@ -62,17 +62,17 @@ Uag 5.0版本更新使用：
 ?> **参数说明：**  
 
 | 参数名       | 参数说明        | 默认值  |  
-| ：-------------：|:-------------:|    
-|serviceType  | 企业版服务类型 | 2c为appId， 2e为systemId，默认为2c |    
-|noBodyUrl|	特殊接口，签名排除body|	接口地址，如：资源上传接接口|  
+| ------------- |:----------:|:-----:|   
+|serviceType  | 企业版服务类型 | 2c为appId， 2e为systemId，默认为2c |     
+|noBodyUrl|	特殊接口，签名排除body|	接口地址，如：资源上传接接口|   
 |signType|	兼容各版本uag版本号|	md5，sha256，不配置不使用签名验证|  
 |retCodeType|	兼容错误码|	uws，openapi, eur，不配置为uws|  
 
-?> **返回值（在http response header中返回）：：**  
+?> **返回值（在http response header中返回）：**  
 
 | Key       | 参数说明        |  &emsp;  |  
-| ：-------------：|:-------------:|    
-| uagUserId| 	平台账号ID|  &emsp; |  
+| ------------- |:----------:|:-----:|     
+| uagUserId | 	平台账号ID|  &emsp; |  
 | uagAppId	| 开发者应用ID|  &emsp; |  
 | uagAppKey	| 开发者应用ID key|  &emsp; |  
 | uagSystemId	| 开发者应用系统ID|  &emsp; |  
