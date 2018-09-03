@@ -148,20 +148,25 @@
 
 ?> 1. 频繁计算字段为什么建议用bigint代替DECIMAL？  
    
-是因为CPU并不直接支持这种计算。浮点运算稍微快些，因为CPU本地执行了这些运算。如果需要保存三位小数的准确浮点数，则先将数值乘以1000后存为bigint，取时除以1000   
+是因为CPU并不直接支持这种计算。浮点运算稍微快些，因为CPU本地执行了这些运算。如果需要保存三位小数的准确浮点数，则先将数值乘以1000后存为bigint，取时除以1000  
+   
 ?> 2. 如何使用 INT UNSIGNED 存储 ip？  
    
-使用 INT UNSIGNED 而不是 char(15)来存储 ipv4 地址，通过 MySQL 函数 inet_ntoa 和 inet_aton 来进行转化。Ipv6 地址目前没有转化函数，需要使用 DECIMAL 或者两个 bigINT 来 存储。例如： SELECT INET_ATON('209.207.224.40'); 3520061480 SELECT INET_NTOA(3520061480); 209.207.224.40   
+使用 INT UNSIGNED 而不是 char(15)来存储 ipv4 地址，通过 MySQL 函数 inet_ntoa 和 inet_aton 来进行转化。Ipv6 地址目前没有转化函数，需要使用 DECIMAL 或者两个 bigINT 来 存储。例如： SELECT INET_ATON('209.207.224.40'); 3520061480 SELECT INET_NTOA(3520061480); 209.207.224.40  
+   
 ?> 3.	INT[M]，M 值代表什么含义？   
-注意数值类型括号后面的数字只是表示宽度而跟存储范围没有关系，比如 INT(3)默认显 示 3 位，空格补齐，超出时正常显示，python、java 客户端等不具备这个功能。   
+注意数值类型括号后面的数字只是表示宽度而跟存储范围没有关系，比如 INT(3)默认显 示 3 位，空格补齐，超出时正常显示，python、java 客户端等不具备这个功能。  
+   
 ?> 4.	为什么建议使用 TIMESTAMP来存储时间而不是DATETIME？  
    
-DATETIME 和 TIMESTAMP 都是精确到秒，优先选择 TIMESTAMP，因为 TIMESTAMP只有4个字节，而 DATETIME8个字节。同时TIMESTAMP具有自动赋值以及自动更新的特性。   
+DATETIME 和 TIMESTAMP 都是精确到秒，优先选择 TIMESTAMP，因为 TIMESTAMP只有4个字节，而 DATETIME8个字节。同时TIMESTAMP具有自动赋值以及自动更新的特性。  
+   
 ?> 5. 如何使用 TIMESTAMP 的自动赋值属性？  
    
 a) 将当前时间作为 ts 的默认值：ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP。   
 b) 当行更新时，更新 ts 的值：ts TIMESTAMP DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP。   
-c) 可以将 1 和 2 结合起来：ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP。   
+c) 可以将 1 和 2 结合起来：ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP。  
+   
 ?> 6. 如何对长度大于 50 的 VARCHAR 字段建立索引？  
    
 下面的表增加一列 url_crc32，然后对 url_crc32 建立索引，减少索引字段的长度，提高效率。  
@@ -194,26 +199,31 @@ from t1
 inner join (select id from t1 order by time limit 100000,10) t2 
 on t1.id = t2.tid 
 ```  
-分批更新删除对锁持有的时间更短，对线上业务影响更小。   
+分批更新删除对锁持有的时间更短，对线上业务影响更小。  
+   
 ?> 8. 为什么需要避免 MySQL 进行隐式类型转化？  
    
-因为 MySQL 进行隐士类型转化之后，可能会将索引字段类型转化成=号右边值的类型， 导致使用不到索引，原因和避免在索引字段中使用函数是类似的。   
+因为 MySQL 进行隐士类型转化之后，可能会将索引字段类型转化成=号右边值的类型， 导致使用不到索引，原因和避免在索引字段中使用函数是类似的。  
+   
 ?> 9. 为什么避免使用复杂的SQL?  
       
 拒绝使用复杂的 SQL，将大的 SQL 拆分成多条简单 SQL 分步执行。   
 原因：   
 简单的 SQL 容 易使用到 MySQL 的 query cache；   
 减少锁表时间特别是 MyISAM；   
-可以使用多核 cpu。   
+可以使用多核 cpu。  
+   
 ?> 10. 为什么不建议使用 SELECT *?  
    
 增加很多不必要的消耗（cpu、io、内存、网络带宽）；   
 增加了使用覆盖索引的可能性；   
-当表结构发生改变时，前端也需要更新。   
+当表结构发生改变时，前端也需要更新。  
+   
 ?> 11. InnoDB 存储引擎为什么避免使用 COUNT(*)?   
   
-InnoDB表避免使用COUNT(*)操作，计数统计实时要求较强可以使用memcache或者redis， 非实时统计可以使用单独统计表，定时更新。   
-?> 12. MySQL 中如何进行分页？  
+InnoDB表避免使用COUNT(*)操作，计数统计实时要求较强可以使用memcache或者redis， 非实时统计可以使用单独统计表，定时更新。  
+   
+?> 12. MySQL 中如何进行分页？   
    
 假如有类似下面分页语句：   
 SELECT * FROM table ORDER BY TIME DESC LIMIT 10000,10;   
@@ -236,15 +246,19 @@ ORDER BY TIME
 LIMIT 10000,10) as t 
 USING(id) 
 ```  
+
 ?> 13. 为什么 MySQL 的性能依赖于索引？  
    
-MySQL 的查询速度依赖良好的索引设计，因此索引对于高性能至关重要。合理的索引会 加快查询速度（包括 upDATE 和 DELETE 的速度，MySQL 会将包含该行的 page 加载到内存中， 然后进行 upDATE 或者 DELETE 操作），不合理的索引会降低速度。 MySQL 索引查找类似于新华字典的拼音和部首查找，当拼音和部首索引不存在时，只能 通过一页一页的翻页来查找。当 MySQL 查询不能使用索引时，MySQL会进行全表扫描，会消耗大量的 IO。   
+MySQL 的查询速度依赖良好的索引设计，因此索引对于高性能至关重要。合理的索引会 加快查询速度（包括 upDATE 和 DELETE 的速度，MySQL 会将包含该行的 page 加载到内存中， 然后进行 upDATE 或者 DELETE 操作），不合理的索引会降低速度。 MySQL 索引查找类似于新华字典的拼音和部首查找，当拼音和部首索引不存在时，只能 通过一页一页的翻页来查找。当 MySQL 查询不能使用索引时，MySQL会进行全表扫描，会消耗大量的 IO。  
+   
 ?> 14. 为什么一张表中不能存在过多的索引？  
    
-InnoDB 的 secondary index 使用 b+tree 来存储，因此在 upDATE、DELETE、INSERT 的时候 需要对 b+tree 进行调整，过多的索引会减慢更新的速度。   
+InnoDB 的 secondary index 使用 b+tree 来存储，因此在 upDATE、DELETE、INSERT 的时候 需要对 b+tree 进行调整，过多的索引会减慢更新的速度。  
+  
 ?> 15. 什么是覆盖索引？  
    
-InnoDB 存储引擎中，secondary index（非主键索引）中没有直接存储行地址，存储主键值。如果用户需要查询 secondary index 中所不包含的数据列时，需要先通过 secondary index 查找到主键值，然后再通过主键查询到其他数据列，因此需要查询两次。 覆盖索引的概念就是查询可以通过在一个索引中完成，覆盖索引效率会比较高，主键查询是天然的覆盖索引。 合理的创建索引以及合理的使用查询语句，当使用到覆盖索引时可以获得性能提升。 比如 SELECT email,uid FROM user_email WHERE uid=xx，如果 uid 不是主键，适当时候可以将索引添加为 index(uid,email)，以获得性能提升。   
+InnoDB 存储引擎中，secondary index（非主键索引）中没有直接存储行地址，存储主键值。如果用户需要查询 secondary index 中所不包含的数据列时，需要先通过 secondary index 查找到主键值，然后再通过主键查询到其他数据列，因此需要查询两次。 覆盖索引的概念就是查询可以通过在一个索引中完成，覆盖索引效率会比较高，主键查询是天然的覆盖索引。 合理的创建索引以及合理的使用查询语句，当使用到覆盖索引时可以获得性能提升。 比如 SELECT email,uid FROM user_email WHERE uid=xx，如果 uid 不是主键，适当时候可以将索引添加为 index(uid,email)，以获得性能提升。  
+  
 ?> 16. EXPLAIN 语句 EXPLAIN 语句（在 MySQL 客户端中执行）可以获得 MySQL 如何执行 SELECT 语句的信息。  
    
 通过对 SELECT 语句执行 EXPLAIN，可以知晓 MySQL 执行该 SELECT 语句时是否使用了索引、 全表扫描、临时表、排序等信息。尽量避免 MySQL 进行全表扫描、使用临时表、排序等。 详见官方文档。  
