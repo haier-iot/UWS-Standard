@@ -70,7 +70,7 @@ U+平台已有的uws服务应用名。（后续新增uws服务的应用名参见
 - 1.关于分隔符"/"的使用
 "/"分隔符一般用来对资源层级的划分。对于REST API来说，"/"只是一个分隔符，并无其他含义。为了避免混淆，"/"不应该出现在URL的末尾。
 
-- 2.URI中尽量使用连字符"-"代替下划线"_"的使用
+- 2.URI中尽量使用连字符"-"代替下划线"\_"的使用
 连字符 "-"一般用来分割URI中出现的字符串(单词)，来提高URI的可读性。使用下划线"_"来分割字符串(单词)可能会和链接的样式冲突重叠，而影响阅读性。
  
 - 3.URI中统一使用小写字母
@@ -187,30 +187,39 @@ boolean|布尔型（true或false）| |`{“idOld”:true}`
 以上基本类型本身不包含null值。
 
 - 2.DateTime、Date、String及结构体类型的数据，如果为null时，所对应的属性将不返回。
+
+
 例如：
-##DataTime类型##
 
-> birthday为DateTime类型，不为null时：
-	{"name":"Tom","age":23,"birthday":"2013-10-08 08:00:00","address":{"city":"beijing","street":"haidian"} }
+**DataTime类型**
 
-> birthday为null时，则birthday属性不返回：
-	{"name":"Tom","age":23, "address":{"city":"beijing","street":"haidian"} }
+birthday为DateTime类型，不为null时：
+	
+`{"name":"Tom","age":23,"birthday":"2013-10-08 08:00:00","address":{"city":"beijing","street":"haidian"} }`
 
-##String类型##
+birthday为null时，则birthday属性不返回：
+	
+`{"name":"Tom","age":23, "address":{"city":"beijing","street":"haidian"} }`
 
-> name是String类型，不为null时：
-	{"name":"Tom","age":23,"birthday":"2013-10-08 08:00:00","address":{"city":"beijing","street":"haidian"} }
+**String类型**
 
-> name为null时，则name属性不返回
-	{"age":23,"birthday":"2013-10-08 08:00:00","address":{"city":"beijing","street":"haidian"} }
+name是String类型，不为null时：
 
-##结构体类型##
+`{"name":"Tom","age":23,"birthday":"2013-10-08 08:00:00","address":{"city":"beijing","street":"haidian"} }`
 
-> address为结构体类型，不为null时：
-	{"name":"Tom","age":23,"birthday":"2013-10-08 08:00:00","address":{"city":"beijing","street":"haidian"} }
+name为null时，则name属性不返回
 
-> address为null时，address属性不返回
-	{"name":"Tom","age":23,"birthday":"2013-10-08 08:00:00" }
+`{"age":23,"birthday":"2013-10-08 08:00:00","address":{"city":"beijing","street":"haidian"} }`
+
+**结构体类型**
+
+address为结构体类型，不为null时：
+	
+`{"name":"Tom","age":23,"birthday":"2013-10-08 08:00:00","address":{"city":"beijing","street":"haidian"} }`
+
+address为null时，address属性不返回
+	
+`{"name":"Tom","age":23,"birthday":"2013-10-08 08:00:00" }`
 
 
 ### 2.5 国际化
@@ -300,7 +309,7 @@ uws服务开发完成输出的服务文档名称为**“uws服务名称+版本�
 
 ### 5.1 各套环境及用途
 环境名称|标识|主要用途
-：-|:-|:-
+:-|:-|:-
 北京联调环境|IP为192.168.190.*，需使用证书连接|用于平台联调，只提供给需要与平台进行联调的项目。与平台无关的项目不能使用该环境
 北京验收环境|IP为192.168.160.*，需使用证书连接|用于质量部验收
 开发者环境|IP为192.168.160.*，需使用证书连接|供开发者开发测试使用
@@ -372,7 +381,7 @@ uds|错误\*\*\* | \*\*\* | 由分配人员填写
 
 ## 8 服务发布
 
-###　8.1 发布流程
+### 8.1 发布流程
 
 - 开发阶段：各服务在开发环境进行开发和内测；开发服务的安全策略参照U+安全标准执行。
 - 验证阶段：开发和内测完成后按照U+质量验证的规范部署验证环境，委托质量部进行质量验证；
@@ -380,11 +389,12 @@ uds|错误\*\*\* | \*\*\* | 由分配人员填写
 - 运维阶段：需提供对应服务的拨测脚本给运维，运维进行拨测监控。
 - 运营阶段：需服务开发人员提供服务对应的需求文档、设计文档、接口文档、测试脚本、部署文档、服务监控文档、环境配置文档，交接给技术支持人员。
 
-###　8.2 服务发布
+### 8.2 服务发布
 
 **国内环境：**
 
 新服务发布（含全新服务+新服务升级）生产环境升级后，需项目负责人（项目经理）在生产升级完成后的一周时间内提申请同步升级开发者环境。
+
 开发者环境UWS域名使用**https://dev-uws.haigeek.com**，请提交运维配置说明；
 
 **国外环境**
@@ -398,15 +408,22 @@ uds|错误\*\*\* | \*\*\* | 由分配人员填写
 #### 参数介绍
 
 **待签名字符串为：**url字符串 + Body字符串+appId+appKey +timestamp；
+
 **url 字符串：**指请求的接口地址去除https://uws.haier.net 后剩余的路径部分；
-**Body字符串：**指应用发送请求的Body部分去除所有空白字符后的JSON字符串，没有body时为空字符串（不是null）。
+
+**Body字符串：**指应用发送请求的Body部分去除所有空白字符后的JSON字符串，没有body时为空字符串（不是null）;
+
 **appId：**Header头中的属性（见公共部分说明）；
+
 **appKey：**在海极网给应用申请的appKey，不能明文发送；
+
 **timestamp：**Header头中的属性（见公共部分说明）；
 
 #### 算法
 
-签名算法就是对待签名字符串计算32位小写SHA-256值。算法JAVA示例
+签名算法就是对待签名字符串计算32位小写SHA-256值。
+
+算法JAVA示例
 
 ```
 String getSign(String appId, String appKey, String timestamp, String body,String url){：
@@ -479,11 +496,11 @@ String BinaryToHexString(byte[] bytes) {
 |da	|Danish	|丹麦语	|
 |de	|German(Standard)	|德语 - 标准|	
 |de-at	|German(Austrian)	|德语 - 奥地利	|
-|de-ch	|German(Swiss)	|德语 - 瑞士|	否|
+|de-ch	|German(Swiss)	|德语 - 瑞士|	
 |de-li	|German(Liechtenstein)	|德语 - 列支敦士登|	
 |de-lu	|German(Luxembourg)	|德语 - 卢森堡	|
-|el	|Greek	|希腊语	|否|
-|en	|English	|英语|	是|
+|el	|Greek	|希腊语	|
+|en	|English	|英语|	
 |en-au	|English(Australian)	|英语 - 澳大利亚	|
 |en-bz	|English(Belize)	|英语 - 伯利兹	|
 |en-ca	|English(Canadian)	|英语 - 加拿大	|
@@ -500,7 +517,7 @@ String BinaryToHexString(byte[] bytes) {
 
 
 [^-^]:附件注释
-[ErrorCode]:_file/错误码
-[PluginInstruction]:
-[UAG]:
-[DatabaseDevelopmentSpecification]：
+[ErrorCode]:_file/
+[PluginInstruction]:_file/
+[UAG]:_file/
+[DatabaseDevelopmentSpecification]：_file/
