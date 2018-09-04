@@ -298,7 +298,7 @@ uws服务开发完成输出的服务文档名称为**“uws服务名称+版本�
 开放的uws服务文档，开发编写好后发给**U+云平台智能服务团队（lijingtao@haier.com 李京涛）**统一往外部输出。
 
 ### 4.3 文档内容
-- 1)文档格式参照“海尔开放平台接口说明书模板及规范”；
+- 1)文档格式参照[海尔开放平台接口说明书模板及规范][InterfaceSpecification]；
 - 2)文档中需对接口服务出现的对象有统一明确的说明：“公共结构”章节；
 - 3)文档中需对每个接口服务进行清晰的接口定义、请求样例、错误码的描述；
 - 4)文档评审：开发uws服务的接口文档需组织进行评审，人员包括产品经理、项目经理、技术经理、uws服务开发、app开发等；
@@ -335,10 +335,10 @@ uws服务开发完成输出的服务文档名称为**“uws服务名称+版本�
 请遵照各项目组制定的开发规范
 
 ### 6.4 数据库开发规范
-请遵照数据开发使用规范文档，联系人DBA**（wangxianchao.xian@haier.com 王贤朝）**
+请遵照数据开发使用规范文档，联系人DBA**（wangxianchao.xian@haier.com 王贤朝）**  
 
 
-**附件:**[数据库开发使用规范][DatabaseDevelopmentSpecification]
+**附件:** [数据库开发使用规范][DatabaseDevelopmentSpecification]  
 
 
 ## 7 资源申请
@@ -514,7 +514,8 @@ String BinaryToHexString(byte[] bytes) {
 
 
 [^-^]:附件注释
-[ErrorCode]:_file/
-[PluginInstruction]:_file/
-[UAG]:_file/
-[DatabaseDevelopmentSpecification]：_file/
+[ErrorCode]:attachment/ErrorCode  
+[PluginInstruction]:attachment/PluginInstruction  
+[UAG]:attachment/UAG  
+[DatabaseDevelopmentSpecification]:attachment/DatabaseDevelopmentSpecification  
+[InterfaceSpecification]:attachment/InterfaceSpecification  

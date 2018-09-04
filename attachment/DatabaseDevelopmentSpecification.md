@@ -154,7 +154,8 @@
    
 使用 INT UNSIGNED 而不是 char(15)来存储 ipv4 地址，通过 MySQL 函数 inet_ntoa 和 inet_aton 来进行转化。Ipv6 地址目前没有转化函数，需要使用 DECIMAL 或者两个 bigINT 来 存储。例如： SELECT INET_ATON('209.207.224.40'); 3520061480 SELECT INET_NTOA(3520061480); 209.207.224.40  
    
-?> 3.	INT[M]，M 值代表什么含义？   
+?> 3.	INT[M]，M 值代表什么含义？  
+  
 注意数值类型括号后面的数字只是表示宽度而跟存储范围没有关系，比如 INT(3)默认显 示 3 位，空格补齐，超出时正常显示，python、java 客户端等不具备这个功能。  
    
 ?> 4.	为什么建议使用 TIMESTAMP来存储时间而不是DATETIME？  
