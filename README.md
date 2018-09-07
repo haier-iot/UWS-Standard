@@ -407,12 +407,14 @@ uds|错误\*\*\* | \*\*\* | 由分配人员填写
 **国内环境域名：**
 
 > 开发者环境uws服务域名使用：`dev-uws.haigeek.com`
+
 > 生产环境uws服务域名使用：`uws.haier.net`
 
 
 **国外环境域名：**
 
 > 北美环境uws服务域名使用：`uws-gea-us.haieriot.net`
+
 > 欧洲环境uws服务域名使用：`uws-gea-euro.haieriot.net`
 
 
