@@ -150,14 +150,14 @@
 
 ?> 请求地址配置规则示例：  
 
-1)、	地址相似的，动态参数有规律的：
-/commonapp/users/{userId}
-/commonapp/users/{userId}/mobile
-/commonapp/users/{userId}/profile
-/commonapp/users/{userId}/originalMessages
-/commonapp/users/{userId}/messages/unreadCount
-/commonapp/users/{userId}/messages/confirm
-/commonapp/users/{userId}/devices/{deviceId}/name
+1)、	地址相似的，动态参数有规律的：  
+`/commonapp/users/{userId}`  
+`/commonapp/users/{userId}/mobile`  
+`/commonapp/users/{userId}/profile`  
+`/commonapp/users/{userId}/originalMessages`  
+`/commonapp/users/{userId}/messages/unreadCount`  
+`/commonapp/users/{userId}/messages/confirm`  
+`/commonapp/users/{userId}/devices/{deviceId}/name`  
 
 根据以上url，其中有相同规则可以按下面方式配置  
 
@@ -166,9 +166,9 @@
 
 <font color=FF0000><b>注：url长的放在前面</b></font>
 
-2)、	地址相似的，参数无规则的：  
-/commonapp/resources/types/12345/info  
-/commonapp/resources/12345  
+2)、	地址相似的，参数无规则的：    
+`/commonapp/resources/types/12345/info`   
+`/commonapp/resources/12345`    
 以上两个地址相似，配置时要配置两个解析规则如下：  
 
 ![url配置图片2][urlConf2]   
@@ -580,11 +580,11 @@ b)	java程序启动时将utrace.xml加载到classpath中；并在启动方法通
 
 4)、	客户请求传递UTrace  
 
-dubbo消费者提供了三个方法，如下：  
-a)	UTraceDubboContextApi.addUTraceContextRequest();自动生成uTraceId(UUID)，uSpanId(0.1)，uStatus(00)添加到请求上下文中；    
-b)	UTraceDubboContextApi.addUTraceContextRequest(String uTraceId);传递uTraceId到请求上下文中，uSpanId(0.1)自动生成，uStatus(00)；   
-c)	UTraceDubboContextApi.addUTraceContextRequest(String uTraceId, String  uStatus);传递uTraceId，uStatus到请求上下文件中。    
-d)	UTraceDubboContextApi.addUTraceContextRequest(String uTraceId, String uSpanId,String  uStatus);传递uTraceId，uSpanId，uStatus到请求上下文件中。  
+`dubbo`消费者提供了三个方法，如下：   
+a)	`UTraceDubboContextApi.addUTraceContextRequest()`;自动生成`uTraceId(UUID)`，`uSpanId(0.1)`，`uStatus(00)`添加到请求上下文中；    
+b)	`UTraceDubboContextApi.addUTraceContextRequest(String uTraceId)`;传递`uTraceId`到请求上下文中，`uSpanId(0.1)`自动生成，`uStatus(00)`；   
+c)	`UTraceDubboContextApi.addUTraceContextRequest(String uTraceId`, `String  uStatus)`;传递`uTraceId，uStatus`到请求上下文件中。    
+d)	`UTraceDubboContextApi.addUTraceContextRequest(String uTraceId, String uSpanId,String  uStatus)`;传递`uTraceId`，`uSpanId`，`uStatus`到请求上下文件中。  
 
 
 
@@ -923,16 +923,16 @@ b)	通过注解方式：
 
 2)、	utrace独立组件，不依赖其它核心类和插件；  
 
-dubbo消费者提供了三个方法，如下：  
-e)	UTraceDubboContextApi.addUTraceContextRequest();自动生成uTraceId(UUID)，uSpanId(0.1)，uStatus(00)添加到请求上下文中；  
-f)	UTraceDubboContextApi.addUTraceContextRequest(String uTraceId);传递uTraceId到请求上下文中，uSpanId(0.1)自动生成，uStatus(00)；  
-g)	UTraceDubboContextApi.addUTraceContextRequest(String uTraceId, String  uStatus);传递uTraceId，uStatus到请求上下文件中。  
-h)	UTraceDubboContextApi.addUTraceContextRequest(String uTraceId, String uSpanId,String  uStatus);传递uTraceId，uSpanId，uStatus到请求上下文件中。  
+`dubbo`消费者提供了三个方法，如下：  
+e)	`UTraceDubboContextApi.addUTraceContextRequest()`;自动生成`uTraceId(UUID)`，`uSpanId(0.1)`，`uStatus(00)`添加到请求上下文中；  
+f)	`UTraceDubboContextApi.addUTraceContextRequest(String uTraceId)`;传递`uTraceId`到请求上下文中，`uSpanId(0.1)`自动生成，`uStatus(00)`；  
+g)	`UTraceDubboContextApi.addUTraceContextRequest(String uTraceId, String  uStatus)`;传递`uTraceId`，`uStatus`到请求上下文件中。  
+h)	`UTraceDubboContextApi.addUTraceContextRequest(String uTraceId, String uSpanId,String  uStatus)`;传递`uTraceId`，`uSpanId`，`uStatus`到请求上下文件中。  
 
 
 ### 日志收集
 
-使用logback开源组件进行日志收集，logback.xml配置信息如下：  
+?> 使用logback开源组件进行日志收集，logback.xml配置信息如下：  
 
 
 	<property name="APP_NAME" value="uds"/>
