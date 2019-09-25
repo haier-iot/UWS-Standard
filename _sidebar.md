@@ -1,5 +1,7 @@
 * [UWS服务开发规范](README)
 * 附件
+* * [语言代码](attachment/language)
+* * [时区说明](attachment/timezone)
 * * [IOT错误码汇总](attachment/ErrorCode)
 * * [UTace链式跟踪系统插件使用说明书](attachment/PluginInstruction)
 * * [UAG使用文档](attachment/UAG)

@@ -50,7 +50,7 @@ HTTPS为对外提供服务的统一使用协议，默认使用443端口， 在�
 
 国外北美服务用`uws-gea-us.haieriot.net`，
 
-国外欧洲服务用`uws-gea-euro.haieriot.net`；
+国外欧洲服务用`uws-euro.haieriot.net`；
 
 **{app-name}:**
 
@@ -58,19 +58,18 @@ HTTPS为对外提供服务的统一使用协议，默认使用443端口， 在�
 
 U+平台已有的uws服务应用名。（后续新增uws服务的应用名参见资源申请章节。）
 
-序号|UWS服务名|应用名
-:-:|:-:|:-:
-1|设备管理标准版|uds
-2|设备管理企业版|udse
-3|家庭模型服务|ufm
-4|消息推送服务标准版|ums
-5|消息推送服务企业版|umse
-6|场景引擎服务|Iftttscence
-7|账户服务|uam
-8|网器资源云存储|css
-9|资源服务|uas
-10|预约定时|scheduler
-11|设备影子|shadow
+|序号|	服务名称|	应用名|	备注|
+:-:|:-:|:-:|:-: 
+1|	[账户服务](zh-cn/Account)|	N/A	|集团690用户中心提供
+2|	[设备管理](zh-cn/DeviceManage)	|uds、stdudse、udse|	设备注册、设备管理、设备控制
+3|	[数据订阅](zh-cn/DataSubscription)|	无|	设备数据订阅、应用数据订阅
+4|	[家庭模型](zh-cn/FamilyManage)	|ufm、ufme|	家庭成员管理、家庭设备管理
+5|	[场景引擎](zh-cn/IFTTT)|	iftttscene|	场景创建、场景执行、场景日志管理
+6|	[云定时](zh-cn/Scheduler)|	scheduler|	设备预约控制、场景预约控制  
+7|	[设备影子](zh-cn/DevicesShadow)|	shadow|	设备云状态查询、预期设备控制管理
+8|	[消息推送](zh-cn/MessagePush)|	ums、umse|	设备消息推送、APP消息推送、语音消息推送
+9|	[设备资源云存储](zh-cn/CapacityService_DeviceCloudStorage)|	css|	设备图片/视频存储、查看 
+10|[账户授权](zh-cn/Session)|uaccount|应用OAuth授权，用户授权管理
 
 
 **{version}:**
@@ -273,16 +272,16 @@ retInfo字段保留，但从程序中返回的都是英文，国际化从错误�
 
 |参数名|	类型|位置|是否必填|说明|  
 |:-----:|:-----:|:-----:|:-----:|--|
-|appId|	String|	Header	|必填	|应用ID40位以内字符,Haier uHome 云平台全局唯一。|
-|appVersion	|String	|Header	|必填	|应用版本32 位字符,应用版本标识|
-|clientId	|String	|Header	|必填	|客户端ID27 位字符,客户端机编码与客户端 MAC 地址 拼合成唯一的客户端标识。 APP端可调用USDK获取，其他服务端自定义标识，不能为空 |
+|appId|	String|	Header	|必填	|应用ID40位以内字符,Haier uHome 云平台全局唯一。开发者通过海极网申请获得。|
+|appVersion	|String	|Header	|必填	|应用版本32 位字符,Haier uHome 云平台全局唯一。|  
+|clientId	|String	|Header	|必填	|客户端ID27 位字符,客户端机编码与客户端 MAC 地址 拼合成唯一的客户端标识。 主要用途为唯一标识客户端 (例如,手机)。手机机编码为 IMEI 码。 手机 MAC 为 12 位地址。命名规范:客户端机编码(15 位)-客户 端 MAC 地址(12 位)格式: XXXXXXXXXXXXXXX-XXXXXXXXXXXX 举例: 356877020056553-08002700DC94。APP端可调用usdk获取，其他服务端自定义标识，不能为空。 |
 |sequenceId	|String	|Header|必填	|报文流水(客户端唯一)客户端交易流水号。20 位, 前 14 位时间戳（格式：yyyyMMddHHmmss）,后 6 位流水 号。交易发生时,根据交易 笔数自增量。App应用访问uws接口时必须确保每次请求唯一，不能重复。|
-|accessToken	|String	|Header|必填|（登录后不为空，登录前可为空）	请求令牌（用户登陆后）安全令牌 token。30 位字符。 用户登录 Haier uHome 云平 台,由系统创建。用户退出 Haier uHome 云平 台,由系统销毁。|
-|sign	|String|	Header|	必填|（登录后不为空，登录前可为空）	详见签名认证章节|
-|timestamp	|String	|Header	|必填|	long型时间戳,精确到毫秒，该参数为多国家地区提供支持。应传入用户所在地时间戳。|
+|accessToken	|String	|Header|必填（登录后不为空，登录前可为空）|安全令牌 token，30 位字符。 用户登录 Haier U+ 云平台,由系统创建。用户退出 Haier U+ 云平台,由系统销毁。未登录时，访问不需要登录的平台接口，仍然需要传入本参数，参数值可为空或任意值（不超过30字符）|
+|sign	|String|	Header|	必填|对请求进行签名运算产生的签名,签名算法见附录。|
+|timestamp	|String	|Header	|必填|	应传入用户所在地时间戳，long型时间戳,精确到毫秒|
 |language	|String	|Header|	必填	|该参数为多语言版提供支持。默认填写zh-cn即可。|
-|timezone	|String|	Header|	必填	|时区， -11 至 13。传入用户所在时区，默认填写8即可。|
-|Content-Type|String|	Header|	必填	|该参数不同的服务会有所不同，一般为"application/json;charset=UTF-8" 具体参照媒体类型|
+|timezone	|String|	Header|	必填	|代表客户端使用的时区。传入用户所在时区ID，国内服务请填写"Asia/Shanghai"即可|
+|Content-Type|String|	Header|	必填	|互联网媒体信息，填写为"application/json;charset=UTF-8" |
 
 
 
