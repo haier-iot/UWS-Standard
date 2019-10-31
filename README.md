@@ -404,7 +404,7 @@ uds|错误\*\*\* | \*\*\* | 由分配人员填写
 
 开发所需的具体SVN地址通过U+云平台的运维支撑系统向运维人员提出申请。
 
-运维支撑系统：http://2119.61.17.92:5000/login
+运维支撑系统：http://119.61.17.92:5000/login
 
 #### Maven本地仓库地址
 
@@ -504,51 +504,7 @@ String BinaryToHexString(byte[] bytes) {
 }
 ```
 
-### 9.2 国际化代码表
 
-
-|语言编码|	英文名称|	中文名称|
-|-----|----|----|
-|af	|Afrikaans - South Africa	|南非荷兰语|
-|ar-ae	|Arabic(U.A.E.)	|阿拉伯语 - 阿拉伯联合酋长国	|
-|ar-bh	|Arabic(Bahrain)	|阿拉伯语 - 巴林	|
-|ar-dz	|Arabic(Algeria)	|阿拉伯语 - 阿尔及利亚	|
-|ar-eg	|Arabic(Egypt)	|阿拉伯语 - 埃及	|
-|ar-iq	|Arabic(Iraq)	|阿拉伯语 - 伊拉克	|
-|ar-jo	|Arabic(Jordan)	|阿拉伯语 - 约旦	|
-|ar-kw	|Arabic(Kuwait)	|阿拉伯语 - 科威特	|
-|ar-lb	|Arabic(Lebanon)	|阿拉伯语 - 黎巴嫩	|
-|ar-ly	|Arabic(Libya)	|阿拉伯语 - 利比亚	|
-|ar-ma	|Arabic(Morocco)	|阿拉伯语 - 摩洛哥	|
-|ar-om	|Arabic(Oman)	|阿拉伯语 - 阿曼	|
-|ar-qa	|Arabic(Qatar)	|阿拉伯语 - 卡塔尔	|
-|ar-sa	|Arabic(Saudi Arabia)	|阿拉伯语 - 沙特阿拉伯	|
-|ar-sy	|Arabic(Syria)	|阿拉伯语 - 叙利亚	|
-|ar-tn	|Arabic(Tunisia)	|阿拉伯语 - 突尼斯	|
-|ar-ye	|Arabic(Yemen)	|阿拉伯语 - 也门	|
-|be	|Belarusian	|白俄罗斯语	|
-|bg	|Bulgarian	|保加利亚语	|
-|ca	|Catalan	|加泰罗尼亚语	|
-|cs|	Czech	|捷克语|	
-|da	|Danish	|丹麦语	|
-|de	|German(Standard)	|德语 - 标准|	
-|de-at	|German(Austrian)	|德语 - 奥地利	|
-|de-ch	|German(Swiss)	|德语 - 瑞士|	
-|de-li	|German(Liechtenstein)	|德语 - 列支敦士登|	
-|de-lu	|German(Luxembourg)	|德语 - 卢森堡	|
-|el	|Greek	|希腊语	|
-|en	|English	|英语|	
-|en-au	|English(Australian)	|英语 - 澳大利亚	|
-|en-bz	|English(Belize)	|英语 - 伯利兹	|
-|en-ca	|English(Canadian)	|英语 - 加拿大	|
-|en-gb	|English(British)	|英语 - 英国	|
-|en-ie	|English(Ireland)	|英语 - 爱尔兰|
-|en-jm	|English(Jamaica)	|英语 - 牙买加	|
-|en-nz	|English(New Zealand)	|英语 - 新西兰	|
-|en-tt	|English(Trinidad)	|英语 - 特立尼达岛	|
-|en-us	|English(United States)	|英语 - 美国	|
-|en-za	|English(South Africa)	|英语 - 南非	|
-|es	|Spanish(Spain - Modern Sort)	|西班牙语 - 标准|	
 
 
 
